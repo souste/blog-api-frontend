@@ -8,7 +8,6 @@ const Posts = () => {
 
   useEffect(() => {
     getPosts().then((posts) => {
-      console.log("posts component", posts);
       setPosts(posts);
     });
   }, []);
