@@ -19,7 +19,6 @@ const Posts = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="text-center mb-4">Welcome to the Posts Page</h2>
       <ul className="list-group">
         {posts.map((post) => {
           return (
