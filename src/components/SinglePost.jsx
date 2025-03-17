@@ -1,6 +1,8 @@
+import "./styles.css";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getSinglePost } from "../api";
+import Comments from "./Comments.jsx";
 
 const SinglePost = () => {
   const { postId } = useParams();
@@ -27,6 +29,7 @@ const SinglePost = () => {
         <p className="text-muted">
           Submitted By <strong>{singlePost.username}</strong> on {formatTimestamp(singlePost.updated_at)}
         </p>
+        <Comments />
         <div className="text-center mt-3">
           <a href="/" className="btn btn-custom">
             <button>⬅</button>

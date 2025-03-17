@@ -30,4 +30,20 @@ const getSinglePost = async (postId) => {
   }
 };
 
-export { getPosts, getSinglePost };
+const getComments = async (postId) => {
+  try {
+    const response = await fetch(`https://blog-api-ewnh.onrender.com/api/v1/posts/${postId}/comments`);
+
+    if (!response.ok) {
+      throw new Error("Could not fetch Comments");
+    }
+    const result = await response.json();
+
+    return result.data;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
+export { getPosts, getSinglePost, getComments };
