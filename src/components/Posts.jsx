@@ -1,5 +1,6 @@
 import "./styles.css";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getPosts } from "../api";
 
 const Posts = () => {
@@ -23,13 +24,15 @@ const Posts = () => {
       <ul className="list-group">
         {posts.map((post) => {
           return (
-            <li key={post.id} className="list-group-item mb-3 p-3 shadow-sm">
-              <h3 className="text-primary">{post.title}</h3>
-              <p className="text-muted">{post.content}</p>
-              <p className="text-secondary">
-                <strong>By {post.username}</strong> posted on {formatTimestamp(post.timestamp)}
-              </p>
-            </li>
+            <Link key={post.id} to={`/posts/${post.id}`}>
+              <li key={post.id} className="list-group-item mb-3 p-3 shadow-sm">
+                <h3 className="text-primary">{post.title}</h3>
+                <p className="text-muted">{post.content}</p>
+                <p className="text-secondary">
+                  <strong>By {post.username}</strong> posted on {formatTimestamp(post.timestamp)}
+                </p>
+              </li>
+            </Link>
           );
         })}
       </ul>
