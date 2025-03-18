@@ -2,6 +2,7 @@ const CreatePost = () => {
   return (
     <div className="container mt-4">
       <h1 className="text-center text-primary mb-4">Create a New Post</h1>
+      <p> (This will only work with the admin version of this site)</p>
       <form action="/create-post" method="POST" className="card p-4 shadow-sm">
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
@@ -15,13 +16,6 @@ const CreatePost = () => {
             Content:
           </label>
           <input type="textarea" name="content" id="content" className="form-control" required />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="user_id" className="form-label">
-            User ID (temp until login sorted):
-          </label>
-          <input type="number" name="user_id" id="user_id" className="form-control" min="1" max="15" required />
         </div>
 
         <div className="text-center">

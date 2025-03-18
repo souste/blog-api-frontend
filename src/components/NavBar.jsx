@@ -5,11 +5,11 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3">
       <div className="container">
         <h1 className="navbar-brand text-primary fs-2">Welcome **Username** to the Blog</h1>
-        <div className="ms-auto">
+        {/* <div className="ms-auto">
           <Link to="/create-post" className="btn btn-success">
             ➕ Create Post
           </Link>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
