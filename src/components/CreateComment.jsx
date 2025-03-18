@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createComment } from "../api";
 
+//The user ID should be 14 if no a logged in user
 const CreateComment = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
