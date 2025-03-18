@@ -13,6 +13,7 @@ const Posts = () => {
   }, []);
 
   const formatTimestamp = (timestamp) => {
+    if (!timestamp) return "Unknown Time";
     const date = new Date(timestamp);
     return `${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
   };

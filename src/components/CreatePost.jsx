@@ -15,7 +15,7 @@ const CreatePost = () => {
           <label htmlFor="content" className="form-label">
             Content:
           </label>
-          <input type="textarea" name="content" id="content" className="form-control" required />
+          <textarea name="content" id="content" className="form-control" required />
         </div>
 
         <div className="text-center">

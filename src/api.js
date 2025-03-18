@@ -46,4 +46,28 @@ const getComments = async (postId) => {
   }
 };
 
-export { getPosts, getSinglePost, getComments };
+// Will need option of adding this by user in admin version of website
+const createComment = async (postId, commentData) => {
+  try {
+    const response = await fetch(`https://blog-api-ewnh.onrender.com/api/v1/posts/${postId}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commentData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create comment");
+    }
+    const result = await response.json();
+    console.log("API Response (createComment):", result);
+
+    return result.data;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
+export { getPosts, getSinglePost, getComments, createComment };
