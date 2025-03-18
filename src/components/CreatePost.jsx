@@ -30,6 +30,11 @@ const CreatePost = () => {
           </button>
         </div>
       </form>
+      <div className="text-center mt-3">
+        <a href="/" className="btn btn-custom">
+          <button>⬅</button>
+        </a>
+      </div>
     </div>
   );
 };
