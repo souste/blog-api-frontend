@@ -13,6 +13,7 @@ const SignUp = () => {
     password: "",
     confirm_password: "",
   });
+  const [errors, setErrors] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event) => {
@@ -28,7 +29,15 @@ const SignUp = () => {
     setIsSubmitting(true);
 
     try {
-      await createUser(user);
+      const response = await createUser(user);
+      console.log("Errors received:", response.errors);
+
+      if (response.errors) {
+        setErrors(response.errors);
+        setIsSubmitting(false);
+        return;
+      }
+
       navigate("/");
     } catch (err) {
       console.error("Failed to create user", err);
@@ -39,7 +48,18 @@ const SignUp = () => {
     <div className="container mt-5">
       <div className="card shadow-sm p-4">
         <h1 className="text-center text-primary mb-4">Sign Up</h1>
-        <form onSubmit={handleSubmit} className="needs-validation">
+
+        {errors.length > 0 && (
+          <div className="alert alert-danger">
+            <ul>
+              {errors.map((error, index) => (
+                <li key={index}>{error.msg}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="needs-validation" noValidate>
           <div className="mb-3">
             <label htmlFor="first_name" className="form-label">
               First Name:

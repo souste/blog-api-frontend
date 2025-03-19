@@ -78,15 +78,18 @@ const createUser = async (userData) => {
       },
       body: JSON.stringify(userData),
     });
-    if (!response.ok) {
-      throw new Error("Failed to create user");
-    }
+
     const result = await response.json();
-    console.log("from API", result);
-    return result.data;
+    console.log("API response", result);
+
+    if (!response.ok) {
+      return { errors: result.errors || [{ msg: "Unknown error ocurred" }] };
+    }
+
+    return result;
   } catch (err) {
-    console.error(err);
-    return null;
+    console.error("Failed API request", err);
+    return { errors: [{ msg: err.message }] };
   }
 };
 
