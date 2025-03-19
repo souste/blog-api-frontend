@@ -1,3 +1,11 @@
+// import "./styles.css";
+// import { useParams, useNavigate } from "react-router-dom";
+// import { useState } from "react";
+// import { createPost } from "../api";
+
+// This needs to be a protected route, only available to loggedin users
+// the button is hidden but the url would still be available to users
+
 const CreatePost = () => {
   return (
     <div className="container mt-4">

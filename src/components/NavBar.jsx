@@ -18,14 +18,15 @@ const NavBar = () => {
           Welcome to the Blog {currentUser ? currentUser.username : "(Login or Sign-up)"}
         </h1>
         <div className="d-flex ms-auto">
-          <Link to="/create-post" className="btn btn-success btn-lg px-4 me-3">
-            ➕ Create Post
-          </Link>
-
           {currentUser ? (
-            <button onClick={handleLogout} className="btn btn-outline-danger btn-lg px-4">
-              🚪 Log Out
-            </button>
+            <div>
+              <Link to="/create-post" className="btn btn-success btn-lg px-4 me-3">
+                ➕ Create Post
+              </Link>
+              <button onClick={handleLogout} className="btn btn-outline-danger btn-lg px-4">
+                🚪 Log Out
+              </button>
+            </div>
           ) : (
             <div>
               <Link to="/sign-up" className="btn btn-outline-primary btn-lg px-4 me-3">
