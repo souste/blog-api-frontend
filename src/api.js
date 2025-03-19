@@ -61,7 +61,6 @@ const createComment = async (postId, commentData) => {
       throw new Error("Failed to create comment");
     }
     const result = await response.json();
-    console.log("API Response (createComment):", result);
 
     return result.data;
   } catch (err) {
@@ -70,4 +69,25 @@ const createComment = async (postId, commentData) => {
   }
 };
 
-export { getPosts, getSinglePost, getComments, createComment };
+const createUser = async (userData) => {
+  try {
+    const response = await fetch(`https://blog-api-ewnh.onrender.com/api/v1/auth/sign-up`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to create user");
+    }
+    const result = await response.json();
+    console.log("from API", result);
+    return result.data;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
+export { getPosts, getSinglePost, getComments, createComment, createUser };
