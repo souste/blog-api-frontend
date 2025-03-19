@@ -45,6 +45,16 @@ const Login = () => {
     <div className="container mt-5">
       <div className="card shadow-sm p-4">
         <h1 className="text-center text-primary mb-4">Login</h1>
+
+        {errors.length > 0 && (
+          <div className="alert alert-danger">
+            <ul>
+              {errors.map((error, index) => (
+                <li key={index}>{error.msg}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="needs-validation" noValidate>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
