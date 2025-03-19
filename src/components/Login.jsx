@@ -2,10 +2,12 @@ import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginUser } from "../api";
+import { useAuth } from "../context/authContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState({
+  const { setCurrentUser } = useAuth();
+  const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
@@ -14,7 +16,7 @@ const Login = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setUser((prev) => ({
+    setLoginData((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -25,8 +27,8 @@ const Login = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await loginUser(user);
-      console.log("Errors received:", response.errors);
+      const response = await loginUser(loginData);
+      console.log("Login Response", response);
 
       if (response.errors) {
         setErrors(response.errors);
@@ -34,6 +36,8 @@ const Login = () => {
         return;
       }
 
+      setCurrentUser(response.data.user);
+      console.log("response user object from login", response.user);
       navigate("/");
     } catch (err) {
       console.error("Failed to login user", err);
@@ -64,7 +68,7 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
-              value={user.email}
+              value={loginData.email}
               onChange={handleChange}
               className="form-control"
               required
@@ -79,7 +83,7 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              value={user.password}
+              value={loginData.password}
               onChange={handleChange}
               className="form-control"
               required

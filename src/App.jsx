@@ -5,12 +5,13 @@ import CreatePost from "./components/CreatePost";
 import CreateComment from "./components/CreateComment";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
+import { AuthProvider } from "./context/authContext";
 import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <div>
+    <AuthProvider>
       <NavBar />
       <Routes>
         <Route path="/" element={<Posts />} />
@@ -20,7 +21,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-    </div>
+    </AuthProvider>
   );
 }
 
