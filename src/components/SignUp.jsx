@@ -30,7 +30,6 @@ const SignUp = () => {
 
     try {
       const response = await createUser(user);
-      console.log("Errors received:", response.errors);
 
       if (response.errors) {
         setErrors(response.errors);
@@ -150,7 +149,7 @@ const SignUp = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary w-100" disabled={isSubmitting}>
+          <button type="submit" className="btn btn-primary w-auto" disabled={isSubmitting}>
             Sign Up
           </button>
         </form>

@@ -83,7 +83,7 @@ const createUser = async (userData) => {
     console.log("API response", result);
 
     if (!response.ok) {
-      return { errors: result.errors || [{ msg: "Unknown error ocurred" }] };
+      return { errors: result.errors || [{ msg: "Unknown error occurred" }] };
     }
 
     return result;
@@ -93,4 +93,27 @@ const createUser = async (userData) => {
   }
 };
 
-export { getPosts, getSinglePost, getComments, createComment, createUser };
+const loginUser = async (userData) => {
+  try {
+    const response = await fetch(`https://blog-api-ewnh.onrender.com/api/v1/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    const result = await response.json();
+    console.log("API Login Response", result);
+
+    if (!response.ok) {
+      return { errors: result.errors || [{ msg: "Unknown error occurred" }] };
+    }
+    return result;
+  } catch (err) {
+    console.error("Failed API request", err);
+    return { errors: [{ msg: err.message }] };
+  }
+};
+
+export { getPosts, getSinglePost, getComments, createComment, createUser, loginUser };
