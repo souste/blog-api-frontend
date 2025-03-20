@@ -2,12 +2,14 @@ import "./styles.css";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 import { getSinglePost, deletePost } from "../api";
 import Comments from "./Comments.jsx";
 
 const SinglePost = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
   const [singlePost, setSinglePost] = useState({});
 
   useEffect(() => {
@@ -38,12 +40,19 @@ const SinglePost = () => {
           Submitted By <strong>{singlePost.username}</strong> on {formatTimestamp(singlePost.updated_at)}
         </p>
         <Comments />
+        {currentUser && currentUser.username === singlePost.username && (
+          <div>
+            <button onClick={() => handleDelete(postId)} className="btn-delete mt-2">
+              🗑 Delete Post
+            </button>
+          </div>
+        )}
+
         <div className="text-center mt-3">
           <button onClick={() => navigate("/")} className="btn btn-custom">
             ⬅
           </button>
         </div>
-        <button onClick={() => handleDelete(postId)}>Delete</button>
       </div>
     </div>
   );
