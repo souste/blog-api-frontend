@@ -8,7 +8,8 @@ const Posts = () => {
 
   useEffect(() => {
     getPosts().then((posts) => {
-      setPosts(posts);
+      const sortedPosts = posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      setPosts(sortedPosts);
     });
   }, []);
 
