@@ -1,12 +1,69 @@
-# React + Vite
+Blog App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple full-stack blog application where users can create, read, comment on, and delete posts. Only the post creator can delete their own posts.
 
-Currently, two official plugins are available:
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📝 View Posts – Browse all blog posts.
 
-## Expanding the ESLint configuration
+🔍 View Single Post – Click on a post to view its full content and comments.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+💬 Comment on Posts – Users can leave comments.
+
+🚀 Authentication – Users must log in to create or delete posts.
+
+❌ Delete Own Posts – Only the post creator can delete their posts.
+
+Tech Stack
+
+Frontend: React, React Router, Context API
+
+Backend: Node.js, Express
+
+Database: MongoDB
+
+Authentication: JWT (JSON Web Tokens)
+
+Installation
+
+1. Clone the Repository
+
+2. Install Dependencies
+
+3. Start the Development Server
+
+API Endpoints
+
+Posts
+
+GET /api/v1/posts – Get all posts
+
+GET /api/v1/posts/:id – Get a single post
+
+POST /api/v1/posts – Create a new post (requires authentication)
+
+DELETE /api/v1/posts/:id – Delete a post (only by post creator)
+
+Comments
+
+POST /api/v1/posts/:id/comments – Add a comment
+
+Authentication
+
+POST /api/v1/auth/register – Register a new user
+
+POST /api/v1/auth/login – Log in a user
+
+Environment Variables
+
+Create a .env file in the root directory with the following:
+
+Deployment
+
+To deploy, build the project:
+
+Then, deploy the build/ folder to your preferred hosting service (e.g., Vercel, Netlify).
+
+License
+
+This project is licensed under the MIT License.
