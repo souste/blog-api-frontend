@@ -30,6 +30,26 @@ const getSinglePost = async (postId) => {
   }
 };
 
+const createPost = async (postData) => {
+  try {
+    const response = await fetch("https://blog-api-ewnh.onrender.com/api/v1/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to create post");
+    }
+    const result = await response.json;
+    return result.data;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
 const getComments = async (postId) => {
   try {
     const response = await fetch(`https://blog-api-ewnh.onrender.com/api/v1/posts/${postId}/comments`);
@@ -116,4 +136,4 @@ const loginUser = async (userData) => {
   }
 };
 
-export { getPosts, getSinglePost, getComments, createComment, createUser, loginUser };
+export { getPosts, getSinglePost, createPost, getComments, createComment, createUser, loginUser };
