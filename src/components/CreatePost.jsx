@@ -16,7 +16,7 @@ const CreatePost = () => {
     content: "",
     user_id: "",
   });
-  // const [errors, setErrors] = useState(false);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event) => {
@@ -37,13 +37,7 @@ const CreatePost = () => {
         ...post,
         user_id: currentUser?.id,
       };
-      const response = await createPost(postData);
-
-      // if (response.errors) {
-      //   setErrors(response.errors);
-      //   setIsSubmitting(false);
-      //   return;
-      // }
+      await createPost(postData);
 
       navigate("/");
     } catch (err) {
