@@ -10,7 +10,6 @@ import { createPost } from "../api";
 const CreatePost = () => {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
-  console.log("current user from Post", currentUser);
   const [post, setPost] = useState({
     title: "",
     content: "",
@@ -24,7 +23,6 @@ const CreatePost = () => {
     setPost((prev) => ({
       ...prev,
       [name]: value,
-      user_id: currentUser?.id,
     }));
   };
 
@@ -35,7 +33,7 @@ const CreatePost = () => {
     try {
       const postData = {
         ...post,
-        user_id: currentUser?.id,
+        user_id: currentUser?.id || 14,
       };
       await createPost(postData);
 

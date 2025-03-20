@@ -1,15 +1,17 @@
 import "./styles.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../context/authContext";
 import { createComment } from "../api";
 
 //The user ID should be 14 if no a logged in user
 const CreateComment = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
   const [comment, setComment] = useState({
     content: "",
-    user_id: 14,
+    user_id: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -26,7 +28,11 @@ const CreateComment = () => {
     setIsSubmitting(true);
 
     try {
-      await createComment(postId, comment);
+      const commentData = {
+        ...comment,
+        user_id: currentUser?.id || 14,
+      };
+      await createComment(postId, commentData);
       navigate(`/posts/${postId}`);
     } catch (err) {
       console.error("Failed to create comment", err);
