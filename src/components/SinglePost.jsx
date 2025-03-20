@@ -1,11 +1,13 @@
 import "./styles.css";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getSinglePost } from "../api";
+import { useNavigate } from "react-router-dom";
+import { getSinglePost, deletePost } from "../api";
 import Comments from "./Comments.jsx";
 
 const SinglePost = () => {
   const { postId } = useParams();
+  const navigate = useNavigate();
   const [singlePost, setSinglePost] = useState({});
 
   useEffect(() => {
@@ -20,7 +22,12 @@ const SinglePost = () => {
     return `${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
   };
 
-  //   Ternary for update date if user has updated post?
+  const handleDelete = async (postId) => {
+    const success = await deletePost(postId);
+    if (success) {
+      navigate("/");
+    }
+  };
 
   return (
     <div className="container mt-4">
@@ -32,10 +39,11 @@ const SinglePost = () => {
         </p>
         <Comments />
         <div className="text-center mt-3">
-          <a href="/" className="btn btn-custom">
-            <button>⬅</button>
-          </a>
+          <button onClick={() => navigate("/")} className="btn btn-custom">
+            ⬅
+          </button>
         </div>
+        <button onClick={() => handleDelete(postId)}>Delete</button>
       </div>
     </div>
   );

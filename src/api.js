@@ -66,6 +66,22 @@ const getComments = async (postId) => {
   }
 };
 
+const deletePost = async (postId) => {
+  try {
+    const response = await fetch(`https://blog-api-ewnh.onrender.com/api/v1/posts/${postId}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete post");
+    }
+    console.log(`Post ${postId} deleted successfully`);
+    return true;
+  } catch (err) {
+    console.error(err("Failed to delete post", err));
+    return false;
+  }
+};
+
 // Will need option of adding this by user in admin version of website
 const createComment = async (postId, commentData) => {
   try {
@@ -136,4 +152,4 @@ const loginUser = async (userData) => {
   }
 };
 
-export { getPosts, getSinglePost, createPost, getComments, createComment, createUser, loginUser };
+export { getPosts, getSinglePost, createPost, deletePost, getComments, createComment, createUser, loginUser };
