@@ -13,10 +13,13 @@ const NavBar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3">
-      <div className="container">
-        <h1 className="navbar-brand text-primary fs-2">
-          Welcome to the Blog {currentUser ? currentUser.username : "(Login or Sign-up)"}
-        </h1>
+      <div className="container d-flex justify-content-between align-items-center">
+        <div>
+          <h1 className="navbar-brand text-primary fs-2">
+            Welcome to the Blog {currentUser ? currentUser.username : "(Login or Sign-up)"}
+          </h1>
+          <p>Sign up or Login to Create/Delete Posts & Comments. Only the Post Creators can delete their own posts</p>
+        </div>
         <div className="d-flex ms-auto">
           {currentUser ? (
             <div>

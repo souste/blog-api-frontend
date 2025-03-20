@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 import { getComments, deleteComment } from "../api";
 import { Link } from "react-router-dom";
 import "./styles.css";
 
 const Comments = () => {
   const { postId, commentId } = useParams();
+  const { currentUser } = useAuth();
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -46,11 +48,13 @@ const Comments = () => {
               <p className="text-muted">
                 By <strong>{comment.username}</strong> posted on {formatTimestamp(comment.timestamp)}
               </p>
-              <div>
-                <button onClick={() => handleDelete(postId, comment.id)} className="btn-delete mt-2">
-                  🗑 Delete Comment
-                </button>
-              </div>
+              {currentUser && (
+                <div>
+                  <button onClick={() => handleDelete(postId, comment.id)} className="btn-delete mt-2">
+                    🗑 Delete Comment
+                  </button>
+                </div>
+              )}
             </li>
           );
         })}
